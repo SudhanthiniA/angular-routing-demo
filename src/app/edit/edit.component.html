@@ -1,0 +1,71 @@
+<div class="container">
+    <form [formGroup]="editForm"  (ngSubmit)="updateData()">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" id="name" formControlName="name">
+        <div class="error" *ngIf="editForm.get('name').invalid && editForm.get('name').touched" >Name is mandatory</div> 
+    </div>    
+    </div>
+    
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="mobileno">Mobile No</label>
+    <input class="form-control" type="text" id="mobileno" formControlName="mobileno">
+    <div class="error" *ngIf="editForm.get('mobileno').invalid && editForm.get('mobileno').touched">Mobile No is mandatory</div> 
+    </div>    
+    </div>
+   
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="number1">Number 1</label>
+    <input class="form-control" type="text" id="number1" formControlName="number1">
+    <div class="error" *ngIf="editForm.get('number1').invalid && editForm.get('number1').touched">Number1 is mandatory</div> 
+    </div>    
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="number2">Number 2</label>
+    <input class="form-control" type="text" id="number2" formControlName="number2" (keyup)="addNumber($event)">
+    <div class="error" *ngIf="editForm.get('number2').invalid && editForm.get('number2').touched">Number2 is mandatory</div> 
+    </div>    
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="number3">Number 3</label>
+    <input class="form-control" type="text"  id="number3"  formControlName="number3"  [value]="total">
+    <!-- <div class="error" *ngIf="form.get('number3').dirty">Number3 is mandatory</div>  -->
+    </div>    
+    </div>  
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label>Gender</label>
+    <select class="form-control" formControlName="genderselect">
+        <option>Please Select</option>
+        <option *ngFor="let gen of gender" >{{gen}}</option>
+        </select>
+    <div class="error" *ngIf="editForm.get('genderselect').touched && editForm.get('genderselect').invalid">Gender is mandatory</div> 
+    </div>    
+    </div>
+    <!-- <div class="col-lg-3">
+        <div *ngFor="let skill of skillVal; let i=index">
+            <input type="checkbox" formArrayName="skillsUpdate" [value]="skill" (change)="onSkillsChangs($event)" 
+            />
+            {{skill}}
+          </div>
+          </div> -->
+    <div class="col-lg-3">
+        <p></p>
+        <p>{{mobileno}}</p> 
+        <p>{{result}}</p>
+    </div>
+    <div class="col-lg-3">
+ <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Submit</button>
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="form.get('username').invalid || form.get('mobileno').invalid">Submit</button> -->
+        <button type="submit" class="btn btn-primary" (click)="reset()">Reset</button>
+        <button type="submit" class="btn btn-primary" routerLink="/list">Cancel</button>
+    </div>
+    </div>
+    </form>
+    </div>

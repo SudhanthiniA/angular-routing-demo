@@ -1,0 +1,241 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" type="text" id="name" formControlName="name">
+        <div class="error" *ngIf="form.get('name').invalid && form.get('name').touched" >Name is mandatory</div> 
+    </div>    
+    </div>
+    
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="mobileno">Mobile No</label>
+    <input class="form-control" type="text" id="mobileno" formControlName="mobileno">
+    <div class="error" *ngIf="form.get('mobileno').invalid && form.get('mobileno').touched">Mobile No is mandatory</div> 
+    </div>    
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="number1">Number 1</label>
+    <input class="form-control" type="text" id="number1" formControlName="number1">
+    <div class="error" *ngIf="form.get('number1').invalid && form.get('number1').touched">Number1 is mandatory</div> 
+    </div>    
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="number2">Number 2</label>
+    <input class="form-control" type="text" id="number2" formControlName="number2" (keyup)="addNumber($event)">
+    <div class="error" *ngIf="form.get('number2').invalid && form.get('number2').touched">Number2 is mandatory</div> 
+    </div>    
+    </div>
+ 
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label for="number3">Number 3</label>
+    <input class="form-control" type="text"  id="number3"  formControlName="number3"  [value]="total">
+    <!-- <div class="error" *ngIf="form.get('number3').dirty">Number3 is mandatory</div>  -->
+    </div>    
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+    <label>Gender</label>
+    <select class="form-control" formControlName="genderselect">
+        <option>Please Select</option>
+        <option *ngFor="let gen of gender" >{{gen}}</option>
+        </select>
+    <div class="error" *ngIf="form.get('genderselect').touched && form.get('genderselect').invalid">Gender is mandatory</div> 
+    </div>    
+    </div>
+    <!-- <div class="col-lg-3">
+        <div class="form-group">
+        <label>Skill</label>
+        <div class="form-check" *ngFor="let skill of skills; let i=index ">
+            <input type="checkbox" class="form-check-input" id="skills" formControlName="skills" 
+            (change)="onCheckboxChange($event)">
+            <label class="form-check-label" for="skills">{{skill}}</label>
+          </div>  
+          <div class="error" *ngIf="form.get('skills').touched && form.get('skills').invalid">Skill is mandatory</div>  
+        </div>
+    </div> -->
+    <!-- <div class="col-lg-3">
+        <div class="form-group">
+        <label>Update</label>
+        <div *ngFor="let skill of skills">
+            <input type="checkbox" class="form-check-input" (change)="onCheckbox($event)" [value]="skill">
+            <label class="form-check-label" for="skills">{{skill}}</label>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="col-lg-3">
+        <div class="form-group">
+        <label>Vehicles</label>
+        <div *ngFor="let v of Vehicles">
+            <input type="checkbox" class="form-check-input" formControlName="vehicles" onchange="checkboxValue()">
+            <label class="form-check-label" for="skills">{{ v.option }}</label>
+            <div class="error" *ngIf="form.get('vehicles').touched && form.get('vehicles').invalid">Vehicles is mandatory</div> 
+            </div>
+            
+        </div>
+        
+    </div> -->
+
+    <!-- <div class="col-lg-3">
+        <div class="form-group">
+            <div *ngFor="let v of skills">
+            <input formControlName="skillsupdate"  type="checkbox"    (change)="test($event)">
+            <label>{{v}}</label>
+        </div>
+            </div>
+            </div> -->
+            <div class="col-lg-3">
+            <div *ngFor="let skill of skillVal; let i=index">
+                <input type="checkbox" formArrayName="skillsUpdate" [value]="skill" (change)="onSkillsChangs($event)" 
+                />
+                {{skill}}
+              </div>
+              </div>
+            <!-- <div *ngFor="let country of countries; let i=index">
+                <input type="checkbox" formArrayName="selectedCountries" [value]="country.value" (change)="onCheckboxChange($event)" 
+                />
+                {{ country.name}}
+              </div> -->
+              <!-- <div class="display-text">
+                <p *ngFor="let thing of things.controls;">
+                  {{ thing }}
+                </p>
+              </div> -->
+              <div class="col-3">
+                <label>Hobbies</label>
+                <input type="text" formControlName="inputValue" />
+              </div> 
+             <div class="col-3" *ngIf="form.get('inputValue').value">
+              <button class="btn btn-primary" (click)="addControl()">Add Control</button>
+            </div>
+            <div class="col-3">
+            <div class="display-text">
+              <label>Storing value</label>
+              <ul  formArrayName="hobbiesArray">
+                <li *ngFor="let thing of this.form.get('hobbiesArray').value; let i=index;">{{thing}}</li>
+              </ul>
+           
+          </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="form-group">
+        <label>Starting Number</label>
+        <input class="form-control" type="text" id="stnumber1" formControlName="startno">
+        <div class="error" *ngIf="form.get('startno').invalid && form.get('startno').touched">Starting Number is mandatory</div> 
+        </div>    
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+        <label>End Number</label>
+        <input class="form-control" type="text" id="ennumber2" formControlName="endno" (keyup)="showArrayValue()">
+        <div class="error" *ngIf="form.get('endno').invalid && form.get('endno').touched">Number2 is mandatory</div> 
+        <span *ngIf="form.get('startno').value > form.get('endno').value">{{errorText}}</span>
+       </div>    
+        </div>
+        <div class="col-3">
+          <button class="btn btn-primary" (click)="showArrayValue()">Add Control</button>
+        </div> 
+       <div class="col-lg-3">
+          <div class="form-group">
+      <label>start and end number range</label>
+      <span *ngFor="let val of valueTwo">{{val}}</span>
+      </div>    
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+    <label>Date</label>
+    <input class="form-control" type="date" id="regdate" formControlName="regdate">
+    <div class="error" *ngIf="form.get('regdate').invalid && form.get('regdate').touched">Date is mandatory</div> 
+    </div>    
+    </div>
+              <!-- <div class="col-3">
+                <div>
+              <div *ngFor="let hobby of form.get; index as i">
+               {{hobby}}
+                   
+        
+           </div>
+          </div>
+          </div> -->
+              <!-- <div class="col-lg-3">
+                <div class="form-group">
+            <label>Store Skill Value</label>
+            <input type="text" formControlName="inputValue" (keyup.enter)="addThing()" />
+            <div class="error" *ngIf="form.get('inputValue').invalid && form.get('inputValue').touched">Number2 is mandatory</div> 
+            </div>    
+            </div>
+            <div class="display-text"  formArrayName="thingsArray">
+                <p *ngFor="let thing of things.controls; let i=index">
+                  {{ thing }}
+                </p>
+              </div> -->
+
+
+            
+            <!-- <div class="col-lg-3">
+                <div class="form-group">
+            <label>Store Skill Value</label>
+            <input class="form-control" type="text" id="storeSkillValue" formControlName="storeSkillValue">
+            <div class="error" *ngIf="form.get('storeSkillValue').invalid && form.get('storeSkillValue').touched">Number2 is mandatory</div> 
+            </div>    
+            </div> -->
+
+
+            <!-- <div class="col-lg-3">
+                <div class="form-group">
+            <label>Skill Result</label>
+            <select class="form-control" formControlName="skillselect">
+                <option>Please Select</option>
+                <option *ngFor="let s of storeSkills" >{{s}}</option>
+                </select>
+            </div>    
+            </div> -->
+           
+    <!-- <div class="col-lg-3">
+        <div class="form-group">
+    <label for="dob">DOB</label>
+    <input class="form-control" type="date" id="dob">
+    <div class="error" *ngIf="form.get('dob').invalid && form.get('dob').touched">DOB is mandatory</div> 
+    </div>    
+    </div> -->
+    <div class="col-lg-3">
+        <p></p>
+        <p>{{mobileno}}</p> 
+        <p>{{gender}}</p> 
+    </div>
+    <div class="col-lg-3">
+        <!-- <button (click)="getValue()">Skill Value</button> -->
+ <button type="submit" class="btn btn-primary" [disabled]="form.invalid" (click)="onSubmit()">Submit</button>
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="form.get('username').invalid || form.get('mobileno').invalid">Submit</button> -->
+        <button type="submit" class="btn btn-primary" (click)="reset()">Reset</button>
+    </div>
+    </div>
+    </form>
+    </div>
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

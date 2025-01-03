@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row">
+       
+
+        <div class="col-lg-3">
+            <div class="form-group">
+                <p>{{8 | filterpipe: searchData}}</p>
+    <label for="name">Name</label>
+    <input class="form-control" type="text" [(ngModel)]="searchData" >
+    
+  <!-- <p>{{4|pipes:'square'}}</p> -->
+    
+</div>    
+</div>
+    </div>
+</div>
+<table>
+    <thead>
+<tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Mobile No</th>
+    <th>Number 1</th>
+    <th>Number 2</th>
+    <th>Total</th>
+    <th>Gender</th>
+    <th>Skills</th>
+    <th>Hobbies</th>
+    <th>Start No</th>
+    <th>End No</th>
+    <th>Action</th>
+</tr>
+    </thead>
+    <tbody>
+<tr *ngFor="let val of customers |filterpipe: searchData">
+    <td>{{val.id}}</td>
+    <td>{{val.name}}</td>
+    <td>{{val.mobileno}}</td>
+    <td>{{val.number1}}</td>
+    <td>{{val.number2}}</td>
+    <td>{{val.number3}}</td>
+    <td>{{val.genderselect}}</td>
+    <td>{{val.skillsUpdate}}</td>
+    <td>{{val.hobbiesArray}}</td>
+    <td>{{val.startno}}</td>
+    <td>{{val.endno}}</td>
+    <td>{{val.regdate}}</td>
+    <td><button type="button" class="btn btn-warning"  routerLink="/edit/{{val.id}}">Edit</button></td>
+    <td><button type="button" class="btn btn-info"  routerLink="/view/{{val.id}}">View</button></td>
+    <td><button type="button" class="btn btn-danger" (click)="deleteDept(val.id)">Delete</button></td>
+</tr>
+    </tbody>
+    </table>

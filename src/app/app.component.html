@@ -1,0 +1,20 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="container">
+<div class="row">
+<div style="text-align:center">
+  <h1>
+Routing
+  </h1>
+  <p>{{content}}</p>
+  <!-- <p>{{4|pipes:'square'}}</p> -->
+  <p>Today {{today |date:'medium':'GMT+8'|uppercase}}</p>
+</div>
+<nav>
+  <a routerLink="/list" class="mr-2">Department</a>
+  <a routerLink="/add">Add</a>
+  <a routerLink="/view">View</a>
+</nav>
+</div>
+</div>
+<router-outlet></router-outlet>
